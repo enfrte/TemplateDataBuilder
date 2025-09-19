@@ -110,10 +110,10 @@ class TemplateDataBuilder
 
 	/**
 	 * Add title based on gender field (Mr. Mrs./Ms.) - Sets localised string
-	 * 
 	 *
 	 * @param string $newKey
-	 * @param array $keys - Pass the correct values for male and female if defaults are not correct.
+	 * @param mixed $gender
+	 * @param array $genderKeys
 	 * @return self
 	 */
 	public function title(string $newKey, mixed $gender, array $genderKeys = [ 1 => 'male', 2 => 'female']): self
