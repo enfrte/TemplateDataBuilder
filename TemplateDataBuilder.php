@@ -97,17 +97,13 @@ class TemplateDataBuilder
 	 * Concatenate address fields
 	 *
 	 * @param string $newKey
-	 * @param string $street
-	 * @param string $postcode
-	 * @param string $post_town
+	 * @param string ...$addressParts - The address parts you want in sequential order
 	 * @return self
 	 */
-	public function concatAddress(string $newKey, string $street, string $postcode, string $post_town): self
+	public function concatAddress(string $newKey, string ...$addressParts): self
 	{
-		$street = $this->data[$street] ?? '';
-		$postcode = $this->data[$postcode] ?? '';
-		$post_town = $this->data[$post_town] ?? '';
-		$this->data[$newKey] = implode(', ', array_filter([$street, $postcode, $post_town]));
+		$parts = array_map(fn($key) => $this->data[$key] ?? '', $addressParts);
+		$this->data[$newKey] = implode(', ', array_filter($parts));
 		return $this;
 	}
 
